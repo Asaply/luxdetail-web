@@ -10,7 +10,7 @@ export default function HeroSection() {
       {/* Background */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1920&q=90"
+          src="/images/hero-wash.jpg"
           alt="Lux Detail hero"
           fill
           priority

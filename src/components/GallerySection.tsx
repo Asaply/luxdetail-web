@@ -6,18 +6,18 @@ import Image from "next/image";
 
 const rows = [
   // Full width
-  [{ src: "https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=1600&q=80", alt: "Detailing exterior", full: true }],
+  [{ src: "/images/hero-wash.jpg", alt: "Lavado profesional", full: true }],
   // Two halves
   [
-    { src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=900&q=80", alt: "Auto deportivo", full: false },
-    { src: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=900&q=80", alt: "Ceramic coating", full: false },
+    { src: "/images/challenger.jpg", alt: "Dodge Challenger", full: false },
+    { src: "/images/porsche.jpg", alt: "Porsche 911 GT3", full: false },
   ],
   // Full width
-  [{ src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80", alt: "Lujo en detalle", full: true }],
+  [{ src: "/images/raptor.jpg", alt: "Ford Raptor R", full: true }],
   // Two halves
   [
-    { src: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=900&q=80", alt: "Interior limpio", full: false },
-    { src: "https://images.unsplash.com/photo-1635776063043-ab23460ffcf5?w=900&q=80", alt: "Pulido de pintura", full: false },
+    { src: "/images/audi.jpg", alt: "Audi", full: false },
+    { src: "/images/gmc.jpg", alt: "GMC Denali", full: false },
   ],
 ];
 

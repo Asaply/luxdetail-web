@@ -11,7 +11,7 @@ export default function FeatureBanner() {
   return (
     <section className="relative w-full overflow-hidden" style={{ aspectRatio: "21/9", minHeight: "50vh" }}>
       <Image
-        src="https://images.unsplash.com/photo-1611651338412-8403fa6e3599?w=1920&q=85"
+        src="/images/porsche.jpg"
         alt="Ceramic Coating"
         fill
         unoptimized

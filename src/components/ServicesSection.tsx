@@ -9,37 +9,37 @@ const services = [
     name: "Lavado Detallado Exterior",
     description: "Limpieza profunda de carrocería, llantas y vidrios.",
     price: "Desde $800 MXN",
-    image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=900&q=80",
+    image: "/images/hero-wash.jpg",
   },
   {
     name: "Pulido y Corrección de Pintura",
     description: "Elimina rayones, swirls y oxidación.",
     price: "Cotizar",
-    image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=900&q=80",
+    image: "/images/mercedes.jpg",
   },
   {
     name: "Ceramic Coating",
     description: "Protección hidrofóbica de larga duración.",
     price: "Cotizar",
-    image: "https://images.unsplash.com/photo-1600712242805-5f78671b24da?w=900&q=80",
+    image: "/images/porsche.jpg",
   },
   {
     name: "Detailing Interior",
     description: "Tapicería, tablero, alfombras y superficies.",
     price: "Desde $1,200 MXN",
-    image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=900&q=80",
+    image: "/images/challenger.jpg",
   },
   {
     name: "Protección de Pintura (PPF)",
     description: "Film invisible contra piedras y rayaduras.",
     price: "Cotizar",
-    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=900&q=80",
+    image: "/images/audi.jpg",
   },
   {
     name: "Ozono y Desinfección",
     description: "Elimina olores y bacterias con tecnología de ozono.",
     price: "Desde $500 MXN",
-    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80",
+    image: "/images/gmc.jpg",
   },
 ];
 

@@ -68,7 +68,7 @@ export default function AboutSection() {
           className="relative min-h-[60vh] lg:min-h-full overflow-hidden"
         >
           <Image
-            src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1000&q=85"
+            src="/images/mercedes.jpg"
             alt="Detailing profesional"
             fill
             unoptimized
