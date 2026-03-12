@@ -1,108 +1,81 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Award, Star, CheckCircle, User } from "lucide-react";
 import Image from "next/image";
 
 const values = [
-  {
-    icon: Star,
-    title: "Productos Premium",
-    description: "Usamos únicamente productos de marcas reconocidas mundialmente.",
-  },
-  {
-    icon: Award,
-    title: "Equipo Certificado",
-    description: "Nuestros técnicos están entrenados y certificados en las técnicas más avanzadas.",
-  },
-  {
-    icon: CheckCircle,
-    title: "Resultados Garantizados",
-    description: "Nos comprometemos con resultados excepcionales en cada servicio.",
-  },
-  {
-    icon: User,
-    title: "Atención Personalizada",
-    description: "Cada vehículo recibe un trato único adaptado a sus necesidades específicas.",
-  },
+  { label: "01", title: "Productos Premium", desc: "Marcas reconocidas mundialmente." },
+  { label: "02", title: "Equipo Certificado", desc: "Técnicos entrenados en las técnicas más avanzadas." },
+  { label: "03", title: "Resultados Garantizados", desc: "Comprometidos con resultados excepcionales." },
+  { label: "04", title: "Atención Personalizada", desc: "Cada vehículo recibe un trato único." },
 ];
 
 export default function AboutSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="nosotros" className="py-32 bg-black">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          {/* Left: Image */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.9 }}
-            className="relative h-[600px] overflow-hidden"
-          >
-            <Image
-              src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=900&q=80"
-              alt="Detailing profesional"
-              fill
-              className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700"
-              unoptimized
-            />
-            {/* Gold frame accent */}
-            <div className="absolute bottom-0 right-0 w-24 h-24 border-b border-r border-gold" />
-            <div className="absolute top-0 left-0 w-24 h-24 border-t border-l border-gold" />
-          </motion.div>
+    <section id="nosotros" className="bg-black">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[90vh]">
+        {/* Left — text */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, x: -30 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.9 }}
+          className="flex flex-col justify-center px-8 lg:px-16 py-24"
+        >
+          <p className="font-[family-name:var(--font-dm-sans)] text-[11px] tracking-[0.4em] uppercase text-[#c9a84c] mb-6">
+            ¿Por qué Lux Detail?
+          </p>
+          <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(2.5rem,4.5vw,4rem)] font-light text-[#f5f5f0] leading-[1.1] mb-14">
+            Precisión que se ve.<br />
+            <em className="text-[#c9a84c] not-italic">Calidad que se siente.</em>
+          </h2>
 
-          {/* Right: Content */}
-          <motion.div
-            ref={ref}
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.9, delay: 0.2 }}
-          >
-            <p className="font-body text-xs tracking-[0.4em] uppercase text-gold mb-4">
-              Nuestra propuesta
-            </p>
-            <h2 className="font-display text-5xl lg:text-6xl font-light text-off-white mb-8 leading-tight">
-              ¿Por qué
-              <br />
-              <em className="text-gold not-italic">Lux Detail?</em>
-            </h2>
-            <p className="font-body text-white/50 leading-relaxed mb-12 text-base">
-              En Lux Detail no solo limpiamos autos — los transformamos. Cada vehículo que llega a nuestras manos recibe el mismo cuidado y precisión que merece un objeto de lujo.
-            </p>
+          {/* Value props with dividers — Nothing specs style */}
+          <div className="space-y-0">
+            {values.map((v, i) => (
+              <motion.div
+                key={v.label}
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
+                className="flex gap-6 py-5 border-t border-white/[0.07] last:border-b"
+              >
+                <span className="font-[family-name:var(--font-dm-sans)] text-[10px] text-[#c9a84c] tracking-widest w-6 shrink-0 mt-1">
+                  {v.label}
+                </span>
+                <div>
+                  <h4 className="font-[family-name:var(--font-cormorant)] text-xl font-light text-[#f5f5f0] mb-1">
+                    {v.title}
+                  </h4>
+                  <p className="font-[family-name:var(--font-dm-sans)] text-xs font-light text-white/40 leading-relaxed">
+                    {v.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-              {values.map((val, i) => {
-                const Icon = val.icon;
-                return (
-                  <motion.div
-                    key={val.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.3 + i * 0.1, duration: 0.6 }}
-                    className="flex gap-4"
-                  >
-                    <div className="shrink-0 mt-0.5">
-                      <Icon className="w-5 h-5 text-gold" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <h4 className="font-display text-xl font-light text-off-white mb-1">
-                        {val.title}
-                      </h4>
-                      <p className="font-body text-xs text-white/40 leading-relaxed">
-                        {val.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        </div>
+        {/* Right — image */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="relative min-h-[60vh] lg:min-h-full overflow-hidden"
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=1000&q=85"
+            alt="Detailing profesional"
+            fill
+            unoptimized
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+          />
+          <div className="absolute inset-0 bg-black/20" />
+        </motion.div>
       </div>
     </section>
   );

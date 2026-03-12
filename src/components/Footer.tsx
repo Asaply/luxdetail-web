@@ -1,80 +1,58 @@
 import Link from "next/link";
-import { Instagram, MessageCircle } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-dark border-t border-white/5 py-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-          {/* Brand */}
-          <div>
-            <span className="font-display text-2xl font-light tracking-[0.2em] text-off-white block mb-4">
-              LUX<span className="text-gold">DETAIL</span>
-            </span>
-            <p className="font-body text-xs text-white/30 leading-relaxed tracking-wide">
-              Detailing profesional premium<br />en Chihuahua, México.
-            </p>
-          </div>
+    <footer className="bg-[#0a0a0a] border-t border-white/[0.06] px-8 lg:px-16 py-12">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 mb-8">
+        {/* Logo */}
+        <span className="font-[family-name:var(--font-cormorant)] text-xl font-light tracking-[0.25em] text-[#f5f5f0]">
+          LUX<span className="text-[#c9a84c]">DETAIL</span>
+        </span>
 
-          {/* Links */}
-          <div>
-            <p className="font-body text-xs tracking-widest uppercase text-gold/60 mb-6">
-              Navegación
-            </p>
-            <div className="space-y-3">
-              {[
-                { href: "#servicios", label: "Servicios" },
-                { href: "#galeria", label: "Galería" },
-                { href: "#contacto", label: "Contacto" },
-              ].map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="block font-body text-sm text-white/40 hover:text-gold transition-colors duration-300"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Social */}
-          <div>
-            <p className="font-body text-xs tracking-widest uppercase text-gold/60 mb-6">
-              Redes Sociales
-            </p>
-            <div className="flex gap-4">
-              <a
-                href="https://instagram.com/luxdetail.cuu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 border border-white/10 flex items-center justify-center hover:border-gold hover:text-gold text-white/40 transition-all duration-300"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a
-                href="https://wa.me/526144697984"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 border border-white/10 flex items-center justify-center hover:border-gold hover:text-gold text-white/40 transition-all duration-300"
-                aria-label="WhatsApp"
-              >
-                <MessageCircle className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
+        {/* Socials */}
+        <div className="flex items-center gap-6">
+          <a
+            href="https://instagram.com/luxdetail.cuu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-[family-name:var(--font-dm-sans)] text-[11px] tracking-[0.2em] uppercase text-white/30 hover:text-[#c9a84c] transition-colors duration-300"
+          >
+            Instagram
+          </a>
+          <a
+            href="https://wa.me/526144697984"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-[family-name:var(--font-dm-sans)] text-[11px] tracking-[0.2em] uppercase text-white/30 hover:text-[#c9a84c] transition-colors duration-300"
+          >
+            WhatsApp
+          </a>
         </div>
+      </div>
 
-        {/* Bottom */}
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-body text-xs text-white/20 tracking-wide">
-            © 2025 Lux Detail. Todos los derechos reservados.
-          </p>
-          <p className="font-body text-xs text-white/20 tracking-wide">
-            Chihuahua, Chihuahua, México
-          </p>
-        </div>
+      {/* Divider */}
+      <div className="h-px bg-white/[0.06] mb-8" />
+
+      {/* Bottom row */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <nav className="flex gap-8">
+          {[
+            { href: "#servicios", label: "Servicios" },
+            { href: "#galeria", label: "Galería" },
+            { href: "#contacto", label: "Contacto" },
+          ].map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="font-[family-name:var(--font-dm-sans)] text-[11px] tracking-[0.2em] uppercase text-white/30 hover:text-[#c9a84c] transition-colors duration-300"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+        <p className="font-[family-name:var(--font-dm-sans)] text-[11px] text-white/20 tracking-wide">
+          © 2025 Lux Detail. Todos los derechos reservados.
+        </p>
       </div>
     </footer>
   );

@@ -1,118 +1,89 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
-import { Instagram } from "lucide-react";
 
-const galleryImages = [
-  {
-    src: "https://images.unsplash.com/photo-1600712242805-5f78671b24da?w=600&q=80",
-    alt: "Detailing exterior",
-    tall: false,
-  },
-  {
-    src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80",
-    alt: "Auto de lujo",
-    tall: true,
-  },
-  {
-    src: "https://images.unsplash.com/photo-1635776063043-ab23460ffcf5?w=600&q=80",
-    alt: "Pulido de pintura",
-    tall: false,
-  },
-  {
-    src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80",
-    alt: "Auto deportivo",
-    tall: false,
-  },
-  {
-    src: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=600&q=80",
-    alt: "Interior limpio",
-    tall: false,
-  },
-  {
-    src: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=600&q=80",
-    alt: "Ceramic coating",
-    tall: true,
-  },
+const rows = [
+  // Full width
+  [{ src: "https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=1600&q=80", alt: "Detailing exterior", full: true }],
+  // Two halves
+  [
+    { src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=900&q=80", alt: "Auto deportivo", full: false },
+    { src: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=900&q=80", alt: "Ceramic coating", full: false },
+  ],
+  // Full width
+  [{ src: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80", alt: "Lujo en detalle", full: true }],
+  // Two halves
+  [
+    { src: "https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=900&q=80", alt: "Interior limpio", full: false },
+    { src: "https://images.unsplash.com/photo-1635776063043-ab23460ffcf5?w=900&q=80", alt: "Pulido de pintura", full: false },
+  ],
 ];
 
 export default function GallerySection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="galeria" className="py-32 bg-dark">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Header */}
+    <section id="galeria" className="bg-[#0a0a0a]">
+      {/* Header */}
+      <div className="px-8 lg:px-16 pt-24 pb-12">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
         >
-          <p className="font-body text-xs tracking-[0.4em] uppercase text-gold mb-4">
+          <p className="font-[family-name:var(--font-dm-sans)] text-[11px] tracking-[0.4em] uppercase text-[#c9a84c] mb-4">
             Nuestro trabajo
           </p>
-          <h2 className="font-display text-5xl lg:text-7xl font-light text-off-white">
-            Galería
-          </h2>
-          <div className="w-24 h-px bg-gold mt-8" />
-        </motion.div>
-
-        {/* Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
-          {galleryImages.map((img, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.7 }}
-              className={`group relative overflow-hidden ${img.tall ? "row-span-2" : ""}`}
-              style={{ aspectRatio: img.tall ? undefined : "4/3", height: img.tall ? "auto" : undefined }}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(2.5rem,5vw,4.5rem)] font-light text-[#f5f5f0]">
+              Galería
+            </h2>
+            <a
+              href="https://instagram.com/luxdetail.cuu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-[family-name:var(--font-dm-sans)] text-[11px] tracking-[0.2em] uppercase text-[#c9a84c] hover:text-[#e2c47a] transition-colors duration-300 pb-1 border-b border-[#c9a84c]/30 hover:border-[#e2c47a] shrink-0"
             >
-              <div className={img.tall ? "h-full min-h-[400px]" : "aspect-[4/3]"}>
+              @luxdetail.cuu →
+            </a>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Gallery rows — Nothing style */}
+      <div className="flex flex-col gap-[1px]">
+        {rows.map((row, rowIdx) => (
+          <div key={rowIdx} className="flex gap-[1px]">
+            {row.map((img, imgIdx) => (
+              <motion.div
+                key={imgIdx}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: imgIdx * 0.1, duration: 0.8 }}
+                className="group relative overflow-hidden flex-1"
+                style={{ aspectRatio: img.full ? "21/7" : "4/3" }}
+              >
                 <Image
                   src={img.src}
                   alt={img.alt}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   unoptimized
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-              </div>
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
-                <div className="text-center">
-                  <Instagram className="w-6 h-6 text-gold mx-auto mb-3" />
-                  <p className="font-body text-xs tracking-widest uppercase text-white/80">
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-500 flex items-center justify-center">
+                  <p className="font-[family-name:var(--font-dm-sans)] text-[11px] tracking-[0.3em] uppercase text-[#c9a84c] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     @luxdetail.cuu
                   </p>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Instagram CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6, duration: 0.7 }}
-          className="text-center mt-12"
-        >
-          <a
-            href="https://instagram.com/luxdetail.cuu"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 font-body text-sm tracking-widest uppercase text-gold border border-gold/30 px-8 py-4 hover:border-gold hover:bg-gold hover:text-black transition-all duration-300"
-          >
-            <Instagram className="w-4 h-4" />
-            Ver más en Instagram
-          </a>
-        </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        ))}
       </div>
     </section>
   );

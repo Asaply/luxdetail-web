@@ -1,125 +1,128 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Sparkles, Zap, Shield, Car, Layers, Wind } from "lucide-react";
+import Image from "next/image";
 
 const services = [
   {
-    icon: Car,
     name: "Lavado Detallado Exterior",
-    description: "Limpieza profunda de carrocería, llantas y vidrios con productos de grado profesional.",
+    description: "Limpieza profunda de carrocería, llantas y vidrios.",
     price: "Desde $800 MXN",
+    image: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=900&q=80",
   },
   {
-    icon: Sparkles,
     name: "Pulido y Corrección de Pintura",
-    description: "Eliminación de rayones, swirls y oxidación para recuperar el brillo original.",
+    description: "Elimina rayones, swirls y oxidación.",
     price: "Cotizar",
+    image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=900&q=80",
   },
   {
-    icon: Shield,
     name: "Ceramic Coating",
-    description: "Protección hidrofóbica de larga duración que mantiene tu auto impecable.",
+    description: "Protección hidrofóbica de larga duración.",
     price: "Cotizar",
+    image: "https://images.unsplash.com/photo-1600712242805-5f78671b24da?w=900&q=80",
   },
   {
-    icon: Layers,
     name: "Detailing Interior",
-    description: "Limpieza profunda de tapicería, tablero, alfombras y todas las superficies.",
+    description: "Tapicería, tablero, alfombras y superficies.",
     price: "Desde $1,200 MXN",
+    image: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=900&q=80",
   },
   {
-    icon: Zap,
     name: "Protección de Pintura (PPF)",
-    description: "Film invisible que protege tu pintura de piedras, rayaduras y elementos externos.",
+    description: "Film invisible contra piedras y rayaduras.",
     price: "Cotizar",
+    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=900&q=80",
   },
   {
-    icon: Wind,
     name: "Ozono y Desinfección",
-    description: "Eliminación de olores, bacterias y gérmenes con tecnología de ozono.",
+    description: "Elimina olores y bacterias con tecnología de ozono.",
     price: "Desde $500 MXN",
+    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80",
   },
 ];
 
 function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const Icon = service.icon;
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <motion.div
+    <motion.a
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.1, duration: 0.7, ease: "easeOut" }}
-      className="group relative border border-white/10 p-8 hover:border-gold/50 transition-all duration-500 bg-white/[0.02] hover:bg-white/[0.05] cursor-default"
+      href="https://wa.me/526144697984"
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: (index % 2) * 0.1, duration: 0.7, ease: "easeOut" }}
+      className="group relative overflow-hidden block"
+      style={{ aspectRatio: "4/3" }}
     >
-      {/* Gold corner accent */}
-      <div className="absolute top-0 left-0 w-8 h-px bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="absolute top-0 left-0 w-px h-8 bg-gold opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Image */}
+      <Image
+        src={service.image}
+        alt={service.name}
+        fill
+        unoptimized
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+      {/* Base overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+      {/* Hover overlay */}
+      <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Gold bottom border on hover */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#c9a84c] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-      <div className="mb-6">
-        <Icon className="w-6 h-6 text-gold" strokeWidth={1.5} />
-      </div>
-
-      <h3 className="font-display text-2xl font-light text-off-white mb-3 group-hover:text-gold transition-colors duration-300">
-        {service.name}
-      </h3>
-      <p className="font-body text-sm text-white/50 leading-relaxed mb-6">
-        {service.description}
-      </p>
-      <div className="flex items-center justify-between">
-        <span className="font-body text-xs tracking-widest uppercase text-gold/70">
+      {/* Text */}
+      <div className="absolute bottom-0 left-0 right-0 p-7">
+        <p className="font-[family-name:var(--font-dm-sans)] text-[10px] tracking-[0.3em] uppercase text-[#c9a84c] mb-2">
           {service.price}
-        </span>
-        <a
-          href="https://wa.me/526144697984"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-body text-xs tracking-widest uppercase text-white/30 hover:text-gold transition-colors duration-300"
-        >
+        </p>
+        <h3 className="font-[family-name:var(--font-cormorant)] text-3xl font-light text-[#f5f5f0] leading-tight mb-2 group-hover:text-[#c9a84c] transition-colors duration-300">
+          {service.name}
+        </h3>
+        <p className="font-[family-name:var(--font-dm-sans)] text-xs font-light text-white/50 leading-relaxed">
+          {service.description}
+        </p>
+        <p className="font-[family-name:var(--font-dm-sans)] text-[10px] tracking-[0.2em] uppercase text-white/30 mt-4 group-hover:text-[#c9a84c] transition-colors duration-300">
           Reservar →
-        </a>
+        </p>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
 
 export default function ServicesSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="servicios" className="py-32 bg-dark">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Header */}
+    <section id="servicios" className="bg-[#0a0a0a]">
+      {/* Section header */}
+      <div className="px-8 lg:px-16 pt-24 pb-12">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
         >
-          <p className="font-body text-xs tracking-[0.4em] uppercase text-gold mb-4">
+          <p className="font-[family-name:var(--font-dm-sans)] text-[11px] tracking-[0.4em] uppercase text-[#c9a84c] mb-4">
             Lo que ofrecemos
           </p>
-          <h2 className="font-display text-5xl lg:text-7xl font-light text-off-white">
+          <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(2.5rem,5vw,4.5rem)] font-light text-[#f5f5f0]">
             Nuestros Servicios
           </h2>
-          <div className="w-24 h-px bg-gold mt-8" />
         </motion.div>
+      </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
-          {services.map((service, i) => (
-            <div key={service.name} className="bg-dark">
-              <ServiceCard service={service} index={i} />
-            </div>
-          ))}
-        </div>
+      {/* 2-col grid — no gap, like Nothing */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-[1px] bg-white/[0.04]">
+        {services.map((s, i) => (
+          <div key={s.name} className="bg-[#0a0a0a]">
+            <ServiceCard service={s} index={i} />
+          </div>
+        ))}
       </div>
     </section>
   );
